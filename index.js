@@ -78,11 +78,14 @@ Car.prototype.fill = function(gallons) {
 };
 Car.prototype.drive = function(distance) {
   this.odometer += distance;
-  if (this.milesPerGallon >= this.odometer)
-  if (this.milesPerGallon === distance) {
-    this.tank -= this.milesPerGallon;
+  let remaining = 0;
+  if (distance > this.milesPerGallon) {
+    let travel = Math.floor(distance / this.milesPerGallon);
+    remaining = distance % this.milesPerGallon;
+    this.tank -= travel;
   }
   if (this.tank === 0) {
+    this.odometer -= remaining;
     return `I ran out of fuel at ${this.odometer} miles!`;
   }
 };
@@ -112,16 +115,15 @@ function Baby(name, age, favoriteToy) {
   };
   this.favoriteToy = favoriteToy;
 }
-console.log(Baby.prototype());
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
   1. when it's outside of an funtion  or object, it will be the object of the window
-  2. the value preceding the "." will be what this refers to
-  3. 
-  4. 
+  2. the value preceding the "." will be what .this keyword refers to
+  3. when creating a constructor .this is referring to the instance of the object
+  4. .this is will be define when using the .call or .apply method
 */
 
 ///////// END OF CHALLENGE /////////
