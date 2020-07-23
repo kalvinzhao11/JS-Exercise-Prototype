@@ -109,10 +109,6 @@ Baby.prototype.play = function() {
 };
 function Baby(name, age, favoriteToy) {
   Person.call(this, name, age);
-  this.person = {
-    name,
-    age
-  };
   this.favoriteToy = favoriteToy;
 }
 
